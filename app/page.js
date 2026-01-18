@@ -23,7 +23,13 @@ const Dashboard = () => {
 
   return (
     <div className="">
-  
+    {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+
       <h2 className="text-xl mb-8 font-semibold bg-linear-to-r from-[#74642F] via-black/60 to-black inline-block text-transparent bg-clip-text">
         Dashboard
       </h2>
