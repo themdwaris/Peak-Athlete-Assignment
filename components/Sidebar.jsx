@@ -12,20 +12,14 @@ const Sidebar = () => {
   const navItems = [
     { path: "/", label: "Dashboard", Icon: MdSpaceDashboard },
     { path: "/leaderboard", label: "Leaderboard", Icon: HiClipboardList },
-  ]
+  ];
 
   return (
     <div
       className={`
-    w-60 fixed top-14 left-0 z-50
-    h-[calc(100vh-3.5rem)]
-    flex flex-col justify-between
-    bg-linear-to-r from-[#EDEBE4] to-white
-    border-r border-gray-200
-    overflow-y-auto
-    transition-transform duration-300 ease-in-out
-    max-md:${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-    md:translate-x-0
+    w-60 shrink-0 fixed md:h-[calc(100vh-56px)] flex flex-col justify-between bg-linear-to-r from-[#EDEBE4] to-white border-r border-gray-200 max-sm:absolute top-15 bottom-0  ${
+      sidebarOpen ? "translate-x-0" : "max-md:-translate-x-full"
+    } transition-all duration-300 ease-in-out
   `}
     >
       <div className="my-6 w-full">

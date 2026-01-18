@@ -29,7 +29,7 @@ export const AthleteAppContextProvider = ({ children }) => {
       setLoadingAthletes(true);
       const data = await axios.get("/api/athletes");
       //   console.log(data);
-      console.log(data.data);
+      // console.log(data.data);
 
       if (data?.data?.success) {
         setAthletes(data?.data?.athletes);
