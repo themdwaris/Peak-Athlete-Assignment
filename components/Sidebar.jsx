@@ -17,7 +17,7 @@ const Sidebar = () => {
   return (
     <div
       className={`
-    w-60 shrink-0 fixed md:h-[calc(100vh-56px)] flex flex-col justify-between bg-linear-to-r from-[#EDEBE4] to-white border-r border-gray-200 max-sm:absolute overflow-y-auto top-14 bottom-0 z-50 ${
+    w-60 shrink-0 fixed md:h-[calc(100vh-56px)] flex flex-col justify-between bg-linear-to-r from-[#EDEBE4] to-white border-r border-gray-200 sm:absolute overflow-y-auto top-14 bottom-0 z-50 ${
       sidebarOpen ? "translate-x-0" : "max-md:-translate-x-full"
     } transition-all duration-300 ease-in-out
   `}
