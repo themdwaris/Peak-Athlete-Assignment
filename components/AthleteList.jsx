@@ -46,19 +46,19 @@ const AthleteList = ({ athlete }) => {
         )}
       </span>
       <div className="flex flex-col gap-1 mt-3">
-        <p className="text-xl font-semibold">{athlete?.name}</p>
+        <p className="text-lg font-semibold">{athlete?.name}</p>
         <p className="">
           <span className="text-sm text-gray-700">Age: </span>
-          <span className="text-black text-lg">{athlete?.age}</span>
+          <span className="text-black text-md md:text-lg">{athlete?.age}</span>
         </p>
         <p className="">
           <span className="text-sm text-gray-700">Sport: </span>
-          <span className="text-black text-lg">{athlete?.sport}</span>
+          <span className="text-black text-md md:text-lg">{athlete?.sport}</span>
         </p>
 
         <p className="">
           <span className="text-sm text-gray-700">Score: </span>
-          <span className="text-black text-lg">{totalScore}</span>
+          <span className="text-black text-md md:text-lg">{totalScore}</span>
         </p>
 
         {isLoggedIn && (
