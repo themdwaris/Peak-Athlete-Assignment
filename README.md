@@ -60,30 +60,7 @@ components/
  └─ Leaderboard.jsx
 ```
 
----
 
-## 🧩 Athlete Schema
-
-```js
-import mongoose from "mongoose";
-
-const AthleteSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true, trim: true },
-    age: { type: Number, required: true },
-    sport: { type: String, required: true, trim: true },
-    scores: {
-      type: [{ score: Number }],
-      default: [],
-    },
-  },
-  { timestamps: true }
-);
-
-export default mongoose.models.Athlete || mongoose.model("Athlete", AthleteSchema);
-```
-
----
 
 ## 🔗 API Endpoints
 
@@ -127,32 +104,7 @@ Body:
 { "athleteId": "id" }
 ```
 
----
 
-### 🏆 Add Score
-
-`POST /api/add-score`
-
-Body:
-
-```json
-{ "athleteId": "id", "score": 10 }
-```
-
-Score is appended to the athlete's score array.
-
----
-
-## 🧮 Total Score Calculation
-
-```js
-const totalScore = athlete.scores.reduce(
-  (acc, curr) => acc + curr.score,
-  0
-);
-```
-
-Used for leaderboard ranking.
 
 ---
 
@@ -166,18 +118,6 @@ Authentication is intentionally simplified:
 * Viewer mode is read-only
 
 ---
-
-## 🔐 Environment Variables
-
-Create a `.env.local` file:
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-NEXT_PUBLIC_USERNAME=coach
-NEXT_PUBLIC_PASSWORD=coach123
-```
-
-⚠️ Only `NEXT_PUBLIC_*` variables are accessible on the frontend.
 
 ---
 
