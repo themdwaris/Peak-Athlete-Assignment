@@ -1,36 +1,220 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Peak Athlete Dashboard
 
-## Getting Started
+A simple athlete management and leaderboard dashboard built as an assignment using **Next.js (App Router)**, **JavaScript**, **MongoDB**, **Mongoose**, **Tailwind CSS**, and **Axios**.
 
-First, run the development server:
+This project focuses on clean CRUD operations, role-based UI behavior (Coach vs Viewer), and score management without implementing full authentication.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Features
+
+* Athlete CRUD (Create, Read, Update, Delete)
+* Add scores to athletes
+* Scores stored as history (array)
+* Leaderboard based on total score
+* Coach login using static credentials (via environment variables)
+* Viewer mode (read-only)
+* Modal-based forms
+* Responsive dashboard UI
+* Context API for global state
+
+---
+
+## 🧱 Tech Stack
+
+* **Frontend**: Next.js (App Router), React, Tailwind CSS
+* **Backend**: Next.js API Routes
+* **Database**: MongoDB with Mongoose
+* **State Management**: React Context API
+* **HTTP Client**: Axios
+
+---
+
+## 📁 Project Structure
+
+```
+app/
+ ├─ api/
+ │   ├─ athletes/route.js
+ │   ├─ add-score/route.js
+ │
+ ├─ dashboard/
+ ├─ login/
+ ├─ page.js
+
+context/
+ └─ AthleteAppContext.js
+
+models/
+ └─ athlete.js
+
+lib/
+ └─ db.js
+
+components/
+ ├─ Sidebar.jsx
+ ├─ Header.jsx
+ ├─ AddAthleteForm.jsx
+ ├─ AddScoreModal.jsx
+ ├─ AthleteTable.jsx
+ └─ Leaderboard.jsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🧩 Athlete Schema
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```js
+import mongoose from "mongoose";
 
-## Learn More
+const AthleteSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, trim: true },
+    age: { type: Number, required: true },
+    sport: { type: String, required: true, trim: true },
+    scores: {
+      type: [{ score: Number }],
+      default: [],
+    },
+  },
+  { timestamps: true }
+);
 
-To learn more about Next.js, take a look at the following resources:
+export default mongoose.models.Athlete || mongoose.model("Athlete", AthleteSchema);
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔗 API Endpoints
 
-## Deploy on Vercel
+### ➕ Create Athlete
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`POST /api/athletes`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Body:
+
+```json
+{ "name": "John", "age": 22, "sport": "Football" }
+```
+
+---
+
+### 📥 Get All Athletes
+
+`GET /api/athletes`
+
+---
+
+### ✏️ Update Athlete
+
+`PATCH /api/athletes`
+
+Body (partial or full update supported):
+
+```json
+{ "athleteId": "id", "name": "Updated Name" }
+```
+
+---
+
+### 🗑 Delete Athlete
+
+`DELETE /api/athletes`
+
+Body:
+
+```json
+{ "athleteId": "id" }
+```
+
+---
+
+### 🏆 Add Score
+
+`POST /api/add-score`
+
+Body:
+
+```json
+{ "athleteId": "id", "score": 10 }
+```
+
+Score is appended to the athlete's score array.
+
+---
+
+## 🧮 Total Score Calculation
+
+```js
+const totalScore = athlete.scores.reduce(
+  (acc, curr) => acc + curr.score,
+  0
+);
+```
+
+Used for leaderboard ranking.
+
+---
+
+## 👤 Coach Login (No Auth Library)
+
+Authentication is intentionally simplified:
+
+* Static credentials stored in `.env`
+* On successful login, UI switches to Coach mode
+* Coach can add, edit, delete athletes and scores
+* Viewer mode is read-only
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env.local` file:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+NEXT_PUBLIC_USERNAME=coach
+NEXT_PUBLIC_PASSWORD=coach123
+```
+
+⚠️ Only `NEXT_PUBLIC_*` variables are accessible on the frontend.
+
+---
+
+## ▶️ Running the Project
+
+```bash
+npm install
+npm run dev
+```
+
+Open: `http://localhost:3000`
+
+---
+
+## 📌 Notes
+
+* No external authentication library used
+* API routes follow REST conventions
+* Designed to be easy to understand and extend
+* Suitable for assignments and interviews
+
+---
+
+## 🙌 Future Improvements
+
+* Proper authentication (JWT / NextAuth)
+* Role-based route protection
+* Score edit/delete
+* Pagination and filters
+* Charts for performance analytics
+
+---
+
+## 📄 License
+
+This project is for learning and assignment purposes.
+
+---
+
+**Built with focus on clarity, simplicity, and clean architecture.**
