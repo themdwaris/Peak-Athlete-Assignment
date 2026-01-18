@@ -49,16 +49,16 @@ const AthleteList = ({ athlete }) => {
         <p className="text-lg font-semibold">{athlete?.name}</p>
         <p className="">
           <span className="text-sm text-gray-700">Age: </span>
-          <span className="text-black text-md md:text-lg">{athlete?.age}</span>
+          <span className="text-black text-md md:text-lg font-medium">{athlete?.age}</span>
         </p>
         <p className="">
           <span className="text-sm text-gray-700">Sport: </span>
-          <span className="text-black text-md md:text-lg">{athlete?.sport}</span>
+          <span className="text-black text-md md:text-lg font-medium">{athlete?.sport}</span>
         </p>
 
         <p className="">
           <span className="text-sm text-gray-700">Score: </span>
-          <span className="text-black text-md md:text-lg">{totalScore}</span>
+          <span className="text-black text-md md:text-lg font-medium">{totalScore}</span>
         </p>
 
         {isLoggedIn && (

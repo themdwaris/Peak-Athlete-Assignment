@@ -6,17 +6,27 @@ import { useAthleteAppContext } from "@/context/AthleteAppContext";
 import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
-  const { sidebarOpen, setSidebarOpen,router,setIsLoggedIn,isLoggedIn } = useAthleteAppContext();
+  const { sidebarOpen, setSidebarOpen, router, setIsLoggedIn, isLoggedIn } =
+    useAthleteAppContext();
   const pathname = usePathname();
   const navItems = [
     { path: "/", label: "Dashboard", Icon: MdSpaceDashboard },
     { path: "/leaderboard", label: "Leaderboard", Icon: HiClipboardList },
-  ];
+  ]
+
   return (
     <div
-      className={`w-60 shrink-0 fixed h-md:h-[calc(100vh-56px)] flex flex-col justify-between bg-linear-to-r from-[#EDEBE4] to-white border-r border-gray-200 max-sm:absolute top-14 bottom-0 ${
-        sidebarOpen ? "translate-x-0" : "max-md:-translate-x-full"
-      } transition-all duration-300 ease-in-out`}
+      className={`
+    w-60 fixed top-14 left-0 z-50
+    h-[calc(100vh-3.5rem)]
+    flex flex-col justify-between
+    bg-linear-to-r from-[#EDEBE4] to-white
+    border-r border-gray-200
+    overflow-y-auto
+    transition-transform duration-300 ease-in-out
+    max-md:${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+    md:translate-x-0
+  `}
     >
       <div className="my-6 w-full">
         <div className="mt-4 flex gap-1.5 flex-col pl-4 pr-3 select-none">
@@ -44,17 +54,19 @@ const Sidebar = () => {
           })}
         </div>
       </div>
-       <div className="px-10 py-6 flex items-center justify-between gap-2.5">
-        {isLoggedIn&&<button
-          className="cursor-pointer px-4 py-2 rounded-full flex items-center gap-1.5 bg-[#74642F] text-sm text-white transition transform active:scale-90 hover:bg-[#55481d]"
-          onClick={() => {
-            setIsLoggedIn(false);
-            localStorage.removeItem("isLogged");
-          }}
-        >
-          <HiOutlineLogout size={20} />
-          <span className="cursor-pointer">Logout</span>
-        </button>}
+      <div className="px-10 py-6 flex items-center justify-between gap-2.5">
+        {isLoggedIn && (
+          <button
+            className="cursor-pointer px-4 py-2 rounded-full flex items-center gap-1.5 bg-[#74642F] text-sm text-white transition transform active:scale-90 hover:bg-[#55481d]"
+            onClick={() => {
+              setIsLoggedIn(false);
+              localStorage.removeItem("isLogged");
+            }}
+          >
+            <HiOutlineLogout size={20} />
+            <span className="cursor-pointer">Logout</span>
+          </button>
+        )}
       </div>
     </div>
   );
