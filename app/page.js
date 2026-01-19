@@ -26,7 +26,7 @@ const Dashboard = () => {
     {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          className="fixed inset-0 bg-black/40 z-30 md:hidden"
         />
       )}
 
