@@ -34,7 +34,7 @@ const Header = () => {
           className="cursor-pointer font-medium text-xl md:text-2xl"
         >
           <span>Peak </span>
-          <span className="font-serif italic text-[#dba456]">athlete</span>
+          <span className="font-serif italic text-[#dba456]">Athlete</span>
         </Link>
       </div>
       {isLoggedIn ? (
