@@ -17,9 +17,18 @@ const Sidebar = () => {
   return (
     <div
       className={`
-    w-60 shrink-0 fixed md:h-[calc(100vh-56px)] flex flex-col justify-between bg-linear-to-r from-[#EDEBE4] to-white border-r border-gray-200 sm:absolute top-14 bottom-0 z-40 ${
-      sidebarOpen ? "translate-x-0" : "max-md:-translate-x-full"
-    } transition-all duration-300 ease-in-out
+    w-60 shrink-0
+    fixed top-14 left-0 z-40
+    h-[calc(100vh-56px)]
+    flex flex-col justify-between
+    bg-linear-to-r from-[#EDEBE4] to-white
+    border-r border-gray-200
+    overflow-y-auto
+
+    transition-transform duration-300 ease-in-out
+
+    max-md:${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+    md:translate-x-0
   `}
     >
       <div className="my-6 w-full">
