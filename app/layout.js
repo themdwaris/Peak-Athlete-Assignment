@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
           <div className="flex flex-col h-screen">
             <Toaster/>
             <Header />
-            <div className="flex flex-1 pt-14">
+            <div className="flex-1 w-full flex">
               <Sidebar />
               <main className="flex-1 p-5 overflow-y-auto ml-0 md:ml-60 bg-[#fcf8ea]">
                 {children}

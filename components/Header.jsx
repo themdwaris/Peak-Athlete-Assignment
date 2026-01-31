@@ -21,7 +21,7 @@ const Header = () => {
   }, [sidebarOpen]);
 
   return (
-    <div className="w-full fixed top-0 py-3 px-5 flex items-center justify-between z-50 border-b border-gray-200 bg-linear-to-b from-[#EDEBE4] to-white">
+    <div className="w-full fixed top-0 h-14 px-5 flex items-center justify-between z-50 border-b border-gray-200 bg-linear-to-b from-[#EDEBE4] to-white">
       <div className="flex items-center gap-2">
         <span
           className="cursor-pointer inline-block md:hidden"
